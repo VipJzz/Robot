@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/shaders">
+        <file>shapes.frag</file>
+        <file>shapes.vert</file>
+        <file>light.frag</file>
+        <file>light.vert</file>
+        <file>axis.frag</file>
+        <file>axis.vert</file>
+        <file>color1.frag</file>
+        <file>color1.vert</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>image/face.png</file>
+        <file>image/muse.jpg</file>
+    </qresource>
+    <qresource prefix="/model">
+        <file>model/1.stl</file>
+        <file>model/2.STL</file>
+        <file>model/3.STL</file>
+        <file>model/4.STL</file>
+        <file>model/5.STL</file>
+        <file>model/6.STL</file>
+        <file>model/7.STL</file>
+    </qresource>
+</RCC>
