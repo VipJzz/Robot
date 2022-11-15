@@ -71,7 +71,8 @@ Stance Trajectory::inverseTh(Point i,QMatrix4x4 m,Stance oldst)
         double n=zpos-d1;
         double H=(m*m+n*n-a2*a2-a3*a3-d4*d4)/(2*a2);
 
-        if(k1*k1+k2*k2-K*K<0)singularFlag=0;//sqrt(k1*k1+k2*k2-K*K)无解，无法进行下面的计算
+        if(k1*k1+k2*k2-K*K<0)singularFlag=0;
+        //sqrt(k1*k1+k2*k2-K*K)无解，无法进行下面的计算
         /**********************************/
         if(i==0||i==1||i==4||i==5){
             solution[i].th2=(atan2(-k2,k1)+atan2(K,sqrt(k1*k1+k2*k2-K*K)))*180/M_PI;
@@ -145,6 +146,10 @@ Stance Trajectory::inverseTh(Point i,QMatrix4x4 m,Stance oldst)
     }
 //    qDebug()<<" th1="<<solution[index].th1<<" th2="<<solution[index].th2<<" th3="<<solution[index].th3<<
 //    " th4="<<solution[index].th4<<" th5="<<solution[index].th5<<" th6="<<solution[index].th6;
+    if(singularFlag==0){
+        qDebug()<<"error:出现奇异解，逆解错误！\n";
+        //return oldst;
+    }
 
     return solution[index];
 }

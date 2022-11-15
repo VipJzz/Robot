@@ -106,7 +106,7 @@ void GLWidget::initializeGL()
 
 
 
-    m_robot=new Robot;
+    m_robot=new glrobot;
     glPointSize(3.0);//点的大小
 
 }
@@ -136,7 +136,7 @@ void GLWidget::paintGL()
 
 
 
-    glClearColor(0.8f, 0.8f, 0.8f,1.0f);//窗口底色，RGBA，A是透明度
+    glClearColor(0.678f, 0.842f, 0.902f,0.98f);//窗口底色，RGBA，A是透明度
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_TEST);//清除缓冲区(颜色、深度、模板）
 
 
@@ -203,13 +203,10 @@ void GLWidget::paintGL()
     shaderProgram.setUniformValue("model",model);
 
 
-
-
-
     if(invflag==true){
         m_robot->inverseGo();
     }else{
-        m_robot->forwardGo();
+       // m_robot->forwardGo();
     }
     shaderProgram.release();
     //画线，采用坐标轴的shader
@@ -217,7 +214,7 @@ void GLWidget::paintGL()
     axisShader.setUniformValue("axisIndex", 1);
     glEnable (GL_POINT_SMOOTH);
 
-    m_robot->forwardGo();
+
     m_robot->displayPath();
     shaderProgram.bind();
 

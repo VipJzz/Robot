@@ -1,11 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
+#include<QMainWindow>
 #include<QPushButton>
 #include"line.h"
 #include"gltest.h"
-#include "setting.h"
+#include"setting.h"
+#include"robot.h"
 namespace Ui {
 class MainWindow;
 }
@@ -48,6 +49,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Setting setLim;
+    Robot *robot1;
+
 };
 
 #endif // MAINWINDOW_H

@@ -62,4 +62,14 @@ extern QMatrix4x4 rotStart,rotEnd;//声明全局变量
 enum trajMode{line,circle};
 
 
+struct Stance{          //记录逆运动学中的姿态，6个theta为一个姿态
+    double th1;
+    double th2;
+    double th3;
+    double th4;
+    double th5;
+    double th6;
+};
+
+
 #endif // GLOBAL_H

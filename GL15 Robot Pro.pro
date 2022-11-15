@@ -28,6 +28,7 @@ CONFIG += c++11
 SOURCES += \
     circle.cpp \
     global.cpp \
+    glrobot.cpp \
        	main.cpp \
        	mainwindow.cpp \
        	gltest.cpp\
@@ -43,6 +44,7 @@ SOURCES += \
 HEADERS += \
     circle.h \
     global.h \
+    glrobot.h \
         mainwindow.h \
 	gltest.h\
    	camera.h\

@@ -7,14 +7,7 @@
 #include"circle.h"
 
 using namespace std;
-struct Stance{          //记录逆运动学中的姿态，6个theta为一个姿态
-    double th1;
-    double th2;
-    double th3;
-    double th4;
-    double th5;
-    double th6;
-};
+
 //轨迹规划器
 class Trajectory
 {

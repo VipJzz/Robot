@@ -22,13 +22,9 @@
 
 
 #include<stdlib.h>
-
 #include"camera.h"
-
 #include<coordinate.h>
-
-
-#include"robot.h"
+#include"glrobot.h"
 
 class GLWidget : public QOpenGLWidget,QOpenGLFunctions_3_3_Core
 {
@@ -74,7 +70,7 @@ private:
 public:
 
     //Model m_model;
-    Robot *m_robot; //以便mainwindow访问，调用改变运动参数
+    glrobot *m_robot; //以便mainwindow访问，调用改变运动参数
     //
     bool invflag=0;//接口，mainwindow访问，标志是否逆，true=逆
 

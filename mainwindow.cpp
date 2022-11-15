@@ -4,7 +4,7 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),robot1(new Robot)
 {
     ui->setupUi(this);
     //setCentralWidget(ui->openGLWidget);//会把GL全屏，其他控件
@@ -16,6 +16,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->PBinit,&QPushButton::clicked,this,[=](){
         inputInit(lim); //包括一切输入
+        //开始进行计算
+        if(ui->comboBox->currentIndex()==0){
+            robot1->inverseInit(line);
+
+        }else if(ui->comboBox->currentIndex()==1){
+            robot1->inverseInit(circle);
+        }
+        //计算得到的姿态和path信息传递到界面
+        ui->openGLWidget->m_robot->setStancePath(robot1->getStancePath());
+        ui->openGLWidget->m_robot->setPath(robot1->getPath());
+
 
     });
 
@@ -104,30 +115,28 @@ void MainWindow::inputInit(Limit &lim){
     rotEnd(2, 0)=ui->r31_2->text().toFloat();
     rotEnd(2, 1)=ui->r32_2->text().toFloat();
     rotEnd(2, 2)=ui->r33_2->text().toFloat();
-    if(ui->comboBox->currentIndex()==0){    //直线
 
 
-        p1.setPiont(ui->startX->text().toDouble(),
-                    ui->startY->text().toDouble(),
-                    ui->startZ->text().toDouble() );
-        p2.setPiont(ui->targetX->text().toDouble(),
-                    ui->targetY->text().toDouble(),
-                    ui->targetZ->text().toDouble() );
-        ui->openGLWidget->m_robot->inverseInit(line);   //robot初始化应该放在外部参数输入完之后
-    }else if(ui->comboBox->currentIndex()==1){
+
+    p1.setPiont(ui->startX->text().toDouble(),
+                ui->startY->text().toDouble(),
+                ui->startZ->text().toDouble() );
+    p2.setPiont(ui->targetX->text().toDouble(),
+                ui->targetY->text().toDouble(),
+                ui->targetZ->text().toDouble() );
 
 
-        p1c.setPiont(ui->startX->text().toDouble(),
-                    ui->startY->text().toDouble(),
-                    ui->startZ->text().toDouble() );
-        p3c.setPiont(ui->targetX->text().toDouble(),
-                    ui->targetY->text().toDouble(),
-                    ui->targetZ->text().toDouble() );
-        p2c.setPiont(ui->midx->text().toDouble(),
-                    ui->midy->text().toDouble(),
-                    ui->midz->text().toDouble() );
-        ui->openGLWidget->m_robot->inverseInit(circle);//robot初始化应该放在外部参数输入完之后
-    }
+    p1c.setPiont(ui->startX->text().toDouble(),
+                 ui->startY->text().toDouble(),
+                 ui->startZ->text().toDouble() );
+    p3c.setPiont(ui->targetX->text().toDouble(),
+                 ui->targetY->text().toDouble(),
+                 ui->targetZ->text().toDouble() );
+    p2c.setPiont(ui->midx->text().toDouble(),
+                 ui->midy->text().toDouble(),
+                 ui->midz->text().toDouble() );
+
+
 
 }
 

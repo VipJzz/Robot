@@ -17,7 +17,7 @@ extern QQuaternion RotMatixtoQuater( const QMatrix4x4 &rot);
 
 //四元数插值
 extern std::vector<QMatrix4x4> QInterpolation(const QMatrix4x4 &rot1,const QMatrix4x4 &rot2,double Tf,double inteT);
-
+extern std::vector<QMatrix4x4> QInterpolation3d(const QMatrix4x4 &rot1,const QMatrix4x4 &rot2,double Tf,double inteT);
 
 
 #endif // POSTURE_H

@@ -126,3 +126,33 @@ std::vector<QMatrix4x4> QInterpolation(const QMatrix4x4 &rot1,const QMatrix4x4 &
     }
     return result;
 }
+
+std::vector<QMatrix4x4> QInterpolation3d(const QMatrix4x4 &rot1,const QMatrix4x4 &rot2,double Tf,double inteT){
+    QQuaternion q1=RotMatixtoQuater(rot1);
+    QQuaternion q2=RotMatixtoQuater(rot2);
+    qDebug()<<"w="<<q1.scalar()<<" x="<<q1.x()<<" y="<<q1.y()<<" z="<<q1.z();
+    qDebug()<<"w="<<q2.scalar()<<" x="<<q2.x()<<" y="<<q2.y()<<" z="<<q2.z();
+    double frequency=Tf*0.8/(inteT/1000);//乘以0.5，姿态先于位置到达
+    double x=q2.x()-q1.x();
+    double y=q2.y()-q1.y();
+    double z=q2.z()-q1.z();
+    double dx=x/frequency;
+    double dy=y/frequency;
+    double dz=z/frequency;
+    std::vector<QMatrix4x4>result;
+    QQuaternion qt;
+    QMatrix4x4 mt;
+    for(int i=0;i<frequency;i++){
+
+        qt.setX(q1.x()+i*dx);
+        qt.setY(q1.y()+i*dy);
+        qt.setZ(q1.z()+i*dz);
+
+        double qtabs=sqrt(qt.x()*qt.x()+qt.y()*qt.y()+qt.z()*qt.z()+qt.scalar()*qt.scalar());
+        qt=qt/qtabs;//化单位四元数
+        //qDebug()<<"w="<<qt.scalar()<<" x="<<qt.x()<<" y="<<qt.y()<<" z="<<qt.z();
+        mt=QuatertoRotMatix(qt);
+        result.push_back(mt);
+    }
+    return result;
+}
